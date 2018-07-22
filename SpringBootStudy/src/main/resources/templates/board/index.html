@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+  <meta charset="UTF-8">
+  <title> Spring Boot Board W1 - list </title>
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.2/css/bootstrap.min.css" integrity="sha384-Smlep5jCw/wG7hdkwQ/Z5nLIefveQRIY9nfy6xoR1uRYBtpZgI6339F5dgvm/e9B"
+    crossorigin="anonymous">
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.2/js/bootstrap.min.js" integrity="sha384-o+RDsa0aLu++PJvFqy8fFScvbHFLtbvScb8AjopnFD+iEQ7wo/CG0xlczd+2O/em"
+    crossorigin="anonymous"></script>
+</head>
+
+<body>
+  <div class="table-responsive">
+    <table class="table table-hover">
+      <tr>
+        <th>제목</th>
+        <th>작성자</th>
+        <th>작성일자</th>
+        <th>조회수</th>
+      </tr>
+      <tr th:each="board : ${boardList}">
+        <td th:text="${board.title}"></td>
+        <td th:text="${board.auth}"></td>
+        <td th:text="${board.createdAt}"></td>
+        <td th:text="${board.hit}"></td>
+        <td>
+          <a th:href="@{view(id=${board.id})}">
+          자세히보기
+          </a>
+        </td>
+      </tr>
+    </table>
+  </div>
+  <button type="button" class="btn btn-primary" onclick="location.href='./write'">등록</button>
+</body>
+
+</html>
