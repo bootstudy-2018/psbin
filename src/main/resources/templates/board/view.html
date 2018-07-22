@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <title> Spring Boot Board W1 - view </title>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.2/css/bootstrap.min.css" integrity="sha384-Smlep5jCw/wG7hdkwQ/Z5nLIefveQRIY9nfy6xoR1uRYBtpZgI6339F5dgvm/e9B"
+        crossorigin="anonymous">
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.2/js/bootstrap.min.js" integrity="sha384-o+RDsa0aLu++PJvFqy8fFScvbHFLtbvScb8AjopnFD+iEQ7wo/CG0xlczd+2O/em"
+        crossorigin="anonymous"></script>
+
+    <script type="text/javascript">
+        function doEdit() {
+            $("form[name='boardForm']").attr("action", "./edit");
+            $("form[name='boardForm']").submit();
+        }
+
+        function doDelete() {
+            $("form[name='boardForm']").attr("action", "./delete");
+            $("form[name='boardForm']").submit();
+        }
+    </script>
+
+</head>
+
+<body>
+    <div class="container">
+        <div class="row">
+            <input type="text" class="form-control" id="title" th:field="${boardOne.title}" readonly>
+        </div>
+        <div class="row">
+            <div class="col-md">작성자 auth :
+                <b th:text="${boardOne.auth}"></b>
+            </div>
+            <div class="col-md">조회수 hit :
+                <b th:text="${boardOne.hit}"></b>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md">작성일자 createdAt :
+                <b th:text="${boardOne.createdAt}"></b>
+            </div>
+            <div class="col-md">수정일자 updatedAt :
+                <b th:text="${boardOne.updatedAt}"></b>
+            </div>
+        </div>
+        <div class="row">
+            <label for="content">내용 content</label>
+            <textarea class="form-control" id="content" th:field="${boardOne.content}" readonly></textarea>
+        </div>
+        <div class="row">
+                <button type="button" class="btn btn-primary" onclick="location.href='./'">목록</button>
+            <button type="button" class="btn btn-primary" onclick="doEdit()">수정</button>
+            <button type="button" class="btn btn-primary" onclick="doDelete()">삭제</button>
+        </div>
+    </div>
+</body>
+
+<form name="boardForm" method="post">
+    <input type="hidden" name="id" th:field="${boardOne.id}">
+</form>
+
+</html>
